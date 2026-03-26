@@ -67,19 +67,18 @@ void setup() {
         halt("ERROR: MPU9250 not found. Check wiring.");
     }
 
-    // -- Optional calibration -------------------------------------------------
-    // Uncomment to calibrate on startup.
-    // Accel/gyro: keep sensor STILL for the whole duration.
-    // Mag: rotate slowly through all orientations.
-    //
-    // Serial.println("# Accel/Gyro cal -- keep still 5 s ...");
-    // delay(5000);
-    // mpu.calibrateAccelGyro();
-    // Serial.println("# Accel/Gyro cal done.");
-    //
-    // Serial.println("# Mag cal -- rotate sensor in all directions 15 s ...");
-    // mpu.calibrateMag();
-    // Serial.println("# Mag cal done.");
+    // -- Magnetometer hard iron calibration -----------------------------------
+    // Rotate the sensor slowly through ALL orientations for the full 15 s:
+    //   flat, tilted forward/back/left/right, upside down, spin each axis.
+    // The library samples min/max on each axis to find the center offset.
+    Serial.println("# MAG CAL -- rotate sensor in all orientations for 15 s ...");
+    Serial.println("# Starting in 3 s ...");
+    delay(3000);
+    mpu.calibrateMag();
+    Serial.printf("# Mag cal done. Offsets: X=%.1f  Y=%.1f  Z=%.1f uT\n",
+                  mpu.getMagBiasX(), mpu.getMagBiasY(), mpu.getMagBiasZ());
+    Serial.printf("# Scale:          X=%.3f  Y=%.3f  Z=%.3f\n",
+                  mpu.getMagScaleX(), mpu.getMagScaleY(), mpu.getMagScaleZ());
 
     // CSV header -- the Python script looks for this exact line
     Serial.println("ts_ms,aX,aY,aZ,gX,gY,gZ,mX,mY,mZ,hdgMag,hdgGyro");
