@@ -56,7 +56,7 @@ void halt(const char* msg) {
 // -- setup --------------------------------------------------------------------
 void setup() {
     Serial.begin(115200);
-    delay(1500);
+    delay(500);
 
     Serial.println("# MPU9250 CSV stream -- starting...");
 
