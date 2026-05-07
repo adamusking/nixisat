@@ -87,7 +87,7 @@
 
 // ── Battery sense (optional ADC) ────────────────────────────────────────────
 #define PIN_VBAT_SENSE          5
-#define VBAT_DIVIDER_RATIO      5.7f    // (R1+R2)/R2 — adjust per actual divider
+#define VBAT_DIVIDER_RATIO      5.54f    // (R1+R2)/R2 — adjust per actual divider
 #define VBAT_ADC_REF_MV         3300.0f
 #define VBAT_ADC_RESOLUTION     4095.0f
 
@@ -115,7 +115,7 @@
 // Madgwick filter: 0.1f balanced, lower trusts gyro more, higher trusts accel
 #define MADGWICK_BETA           0.1f
 #define IMU_SAMPLE_RATE_HZ      200
-#define CONTROL_LOOP_RATE_HZ    1000    // PID loop frequency
+#define CONTROL_LOOP_RATE_HZ    500    // PID loop frequency
 #define MOTOR_UPDATE_RATE_HZ    200     // motor command update rate
 
 // ── IMU calibration biases — paste from calibration tool ────────────────────
@@ -214,9 +214,9 @@
 
 // These coordinates are placeholders. The ground station can also push new
 // target coordinates via LoRa uplink during flight (see handleUplink()).
-#define TARGET_LATITUDE_DEG     48.143905f      // Bratislava placeholder
-#define TARGET_LONGITUDE_DEG    17.108501f
-#define TARGET_REACHED_RADIUS_M 10.0f           // "arrived" when within this
+#define TARGET_LATITUDE_DEG     48.621857f      // Bratislava placeholder
+#define TARGET_LONGITUDE_DEG    18.335563
+#define TARGET_REACHED_RADIUS_M 20.0f           // "arrived" when within this
 
 // Maximum horizontal lean angle while navigating (limits crosstrack tilt)
 #define NAV_MAX_LEAN_ANGLE_DEG  20.0f
